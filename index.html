@@ -10,40 +10,30 @@
 </head>
 
 <body>
-    <main>
-        <!-- #game-intro is initially shown on the game start screen -->
-        <div id="game-intro">
-            <img src="./images/logo.png" alt="" class="logo-img" />
-            <br />
-            <button id="start-button">Start Game</button>
-            <p>Let's prepare our cat for the party!</p>
-            <p>Use the up and down arrow to collect the items!</p>
-            <img src="./images/arrows.png" alt="" class="arrows-img" />
-        </div>
+    <div id="start-screen">
+        <button id="start-button">Start</button>
+    </div>
+    <div id="game-screen" style="display: none;">
+        <div id="cat"></div>
+        <div id="score"></div>
+        <!--<div id="punishment"></div>-->
+    </div>
+    <script type="text/javascript" src="src/model/game.js"></script>
+    <script type="text/javascript" src="src/model/cat.js"></script>
+    <script type="text/javascript" src="src/model/task.js"></script>
+    <script type="text/javascript" src="src/controller/gameController.js"></script>
+    <script type="text/javascript" src="src/view/gameView.js"></script>
+    <script>
+        const cat = new Cat(0, 0);
+        const task = new Task();
+        const view = new GameView(cat, task);
+        const controller = new GameController(cat, view, task);
 
-        <div id="game-container">
-            <div>
-                <h2>Stats</h2>
-                <p>Score: <span id="score">0</span></p>
-                <p>Lives: <span id="lives">3</span></p>
-            </div>
-            <!-- #game-screen is initially hidden using CSS style display: none -->
-            <div id="game-screen"></div>
-        </div>
-
-        <!-- #game-end is initially hidden using CSS style display: none -->
-        <div id="game-end">
-            <img src="./images/logo.png" alt="" class="logo-img" />
-            <h1>Game Over</h1>
-            <br />
-            <button id="restart-button">Restart</button>
-        </div>
-    </main>
-
-    <script type="text/javascript" src="js/game.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <script type="text/javascript" src="js/cat.js"></script>
-    <script type="text/javascript" src="js/task.js"></script>
+        document.getElementById('start-button').addEventListener('click', () => {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('game-screen').style.display = 'block';
+        });
+    </script>
 </body>
 
 </html>

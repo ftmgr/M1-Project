@@ -1,0 +1,42 @@
+window.onload = function () {
+    const startButton = document.getElementById("start-button");
+
+    startButton.addEventListener("click", function () {
+        startGame();
+    });
+
+
+    function startGame() {
+        console.log("start game");
+        const gameScreen = document.getElementById('game-screen');
+        gameScreen.style.display = 'block';
+        gameScreen.style.visibility = 'visible';
+
+
+        const gameIntro = document.getElementById('game-intro');
+        gameIntro.style.display = 'none';
+        gameIntro.style.visibility = 'hidden';
+
+        const gameContainer = document.getElementById('game-container');
+        gameContainer.style.visibility = 'hidden';
+        console.log("success");
+
+    }
+
+    // Instantiate the cat
+    const cat = new Cat();
+    const game = new Game();
+
+    // Event listener for keydown event
+    gameScreen.addEventListener('keydown', function (event) {
+        switch (event.key) {
+            case 'ArrowUp':
+                cat.moveUp();
+                break;
+            case 'ArrowDown':
+                cat.moveDown();
+                break;
+        }
+    });
+
+};

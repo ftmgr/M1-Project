@@ -5,6 +5,7 @@ body {
 
 #game-intro {
     padding: 20px 0px;
+    width: 100vw;
 }
 
 #game-container {
@@ -16,16 +17,50 @@ body {
 
 #game-screen {
     display: none;
-    align-content: center;
-    padding: 20px 0px;
+    align-content: start;
+    width: 900px;
+    height: 600px;
+    padding: 10px 0px;
+    margin-top: 0;
+    margin-left: 0;
     overflow: hidden;
     position: relative;
-    background-image: url(../images/road.png);
+    background-image: url(../images/Free-City-Backgrounds-Pixel-Art7_new.png);
     background-size: cover;
     animation: slide 5s linear infinite;
 }
 
-@keyframes slide {
+#cat {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+}
+
+.item {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: slide 3s linear infinite;
+}
+
+.party {
+    background-color: green;
+}
+
+.irrelevant {
+    background-color: red;
+}
+
+#score,
+#punishment {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/*@keyframes slide {
     0% {
         background-position: 0 -1000px;
     }
@@ -36,6 +71,20 @@ body {
 
     100% {
         background-position: 0 50px;
+    }
+}*/
+
+@keyframes slide {
+    0% {
+        background-position: 600px 0;
+    }
+
+    95% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 60px 0;
     }
 }
 
@@ -48,8 +97,13 @@ body {
     font-family: "Verdana";
 }
 
-.logo-img {
-    width: 350px;
+.cat-img {
+    width: 80px;
+    margin-top: 0px;
+    padding: 0px;
+    justify-content: start;
+    left: 0px;
+
 }
 
 .arrows-img {
