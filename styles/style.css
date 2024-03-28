@@ -16,7 +16,7 @@ body {
 }
 
 #game-screen {
-    display: none;
+    display: flex;
     align-content: start;
     width: 900px;
     height: 600px;
@@ -25,39 +25,55 @@ body {
     margin-left: 0;
     overflow: hidden;
     position: relative;
-    background-image: url(../images/Free-City-Backgrounds-Pixel-Art7_new.png);
+    background-image: url(../images/Free-City-Backgrounds-Pixel-Art7_new2.png);
     background-size: cover;
-    animation: slide 5s linear infinite;
+    animation: slide 3s infinite linear;
+    border: 1px solid black;
+    /* animation: 10s infinite alternate slidein; */
 }
 
 #cat {
     position: absolute;
     width: 50px;
     height: 50px;
-    background-color: gray;
+    background-color: transparent;
+    background-image: url(../images/kity_cat.png);
 }
 
-.item {
+.item.party,
+.item.obstacle {
     position: absolute;
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    animation: slide 3s linear infinite;
+    animation: slide 6s forwards alternate;
+    /* animation: 10s infinite alternate slidein; */
 }
 
 .party {
-    background-color: green;
+    background-color: rgb(58, 128, 0);
+    animation: slide 3s linear infinite;
 }
 
-.irrelevant {
-    background-color: red;
+.obstacle {
+    background-color: rgb(8, 8, 8);
+    animation: slide 3s linear infinite;
 }
 
-#score,
-#punishment {
+#score {
     position: absolute;
     top: 10px;
     right: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#live {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 /*@keyframes slide {
@@ -74,19 +90,28 @@ body {
     }
 }*/
 
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
 @keyframes slide {
     0% {
         background-position: 600px 0;
     }
 
-    95% {
-        background-position: 0 0;
-    }
-
     100% {
-        background-position: 60px 0;
+        background-position: 10px 0;
     }
 }
+
 
 #game-end {
     display: none;

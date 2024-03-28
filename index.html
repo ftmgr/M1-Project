@@ -10,30 +10,44 @@
 </head>
 
 <body>
-    <div id="start-screen">
-        <button id="start-button">Start</button>
-    </div>
-    <div id="game-screen" style="display: none;">
-        <div id="cat"></div>
-        <div id="score"></div>
-        <!--<div id="punishment"></div>-->
-    </div>
-    <script type="text/javascript" src="src/model/game.js"></script>
+    <main>
+        <div id="game-intro">
+            <img src="./images/lets-party.avif" alt="" class="logo-img" />
+            <br />
+            <div id="start-screen">
+                <button id="start-button">Start</button>
+                <p>Use the left, right, up and down arrow to collect the items!</p>
+            </div>
+        </div>
+        <div id="game-container">
+            <div id="game-screen">
+                <div id="cat">
+                    <img src="./images/kity_cat.png" alt="" class="cat-img" />
+                </div>
+                <div id="score">
+                </div>
+                <div id="live"></div>
+            </div>
+        </div>
+        <div id="game-end">
+            <div id="end-screen">
+                <img src="./images/lets-party.avif" alt="" class="logo-img" />
+                <h1>Game Over</h1>
+                <div>
+                    <h2>Stats</h2>
+                    <p> <span id="end-score"> </span></p>
+                    <p> <span id="end-live"> </span></p>
+                </div>
+                <br />
+                <button id="restart-button">Restart</button>
+            </div>
+        </div>
+    </main>
+
     <script type="text/javascript" src="src/model/cat.js"></script>
     <script type="text/javascript" src="src/model/task.js"></script>
     <script type="text/javascript" src="src/controller/gameController.js"></script>
     <script type="text/javascript" src="src/view/gameView.js"></script>
-    <script>
-        const cat = new Cat(0, 0);
-        const task = new Task();
-        const view = new GameView(cat, task);
-        const controller = new GameController(cat, view, task);
-
-        document.getElementById('start-button').addEventListener('click', () => {
-            document.getElementById('start-screen').style.display = 'none';
-            document.getElementById('game-screen').style.display = 'block';
-        });
-    </script>
 </body>
 
 </html>
