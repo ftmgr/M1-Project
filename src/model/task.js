@@ -3,6 +3,7 @@ class Task {
         this.items = [];
         this.score = 0;
         this.live = 3;
+        this.collectedItems = [];
         this.generateItems();
     }
 
@@ -33,6 +34,12 @@ class Task {
             if (distance < 50) {
                 if (item.type === 'party') {
                     this.score += 10;
+                    this.collectedItems.push(item);
+                    if (this.collectedItems.length === this.items.length) {
+                        console.log('We collected all the items!');
+                    }
+
+                    // this.checkCompletion();
                 }
                 else {
                     this.live -= 1;
@@ -42,6 +49,29 @@ class Task {
             }
             this.checkLive();
         }
+    }
+
+    checkCompletion() {
+
+        return this.items.every(object => collectedItems.includes(object));
+    }
+
+    reset(cat) {
+        // Reset game state variables
+        this.items = [];
+        this.score = 0;
+        this.live = 3;
+
+        // Reset cat's position if needed
+        // For example, you can set it to the initial position
+        cat.x = 0;
+        cat.y = 0;
+
+        // Remove any dynamically created HTML elements related to objects in the game view
+        const objectElements = document.querySelectorAll('item');
+        console.log('Object elements:' + objectElements.length);
+        objectElements.forEach(element => element.remove());
+        console.log('Object elements are deleted..' + objectElements.length);
     }
 
 }

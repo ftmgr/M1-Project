@@ -16,6 +16,8 @@ class GameController {
         this.view = view;
         this.task = task;
         this.isPlaying = false;
+        this.remainingTime = 10;
+        this.timer = null;
         this.bindKeyHandlers();
         this.gameLoop();
     }
@@ -41,7 +43,8 @@ class GameController {
     }
 
     startGame() {
-        this.isPlaying = true;
+        // this.isPlaying = true;
+        this.remainingTime = 10;
         document.getElementById('game-container').style.display = 'none';
         document.getElementById('game-end').style.display = 'none';
         document.getElementById('game-intro').style.display = 'block';
@@ -65,12 +68,23 @@ class GameController {
             gameIntro.style.display = 'none';
             gameEnd.style.visibility = 'hidden';
             console.log("success");
+
+            //let timeElement = document.getElementById('time')
+            //timeElement.innerText = 10;
+            // console.log(timeElement);
+
+            this.startCountdown();
+            //this.setTimer();
         });
     }
 
     endGame() {
-        this.isPlaying = false;
+
+        //  this.isPlaying = false;
+
+
         if (this.task.checkLive()) {
+
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('end-screen').style.display = 'block';
             document.getElementById('game-screen').style.display = 'none';
@@ -96,14 +110,15 @@ class GameController {
             document.getElementById('end-live').innerHTML = 'Live: ' + this.task.live;
 
             document.getElementById('restart-button').addEventListener('click', () => {
+                this.task.reset(this.cat);
                 this.restartGame();
             });
         }
     }
 
     restartGame() {
-        this.isPlaying = true;
-        //this.startGame();
+        // this.isPlaying = true;
+
         document.getElementById('start-screen').style.display = 'block';
         document.getElementById('end-screen').style.display = 'none';
         document.getElementById('game-screen').style.display = 'none';
@@ -124,7 +139,12 @@ class GameController {
         const gameEnd = document.getElementById('game-end');
         gameEnd.style.display = 'none';
         gameEnd.style.visibility = 'hidden';
+
+        this.startGame();
+
+        this.task.generateItems();
     }
+
 
     gameLoop() {
         setInterval(() => {
@@ -132,5 +152,25 @@ class GameController {
             this.view.render(this.cat, this.task);
             this.endGame();
         }, 1000 / 60); // 60 FPS
+    }
+
+    startCountdown() {
+        console.log("startCountdown called!");
+
+        let timeElement = document.getElementById('time')
+        console.log(timeElement);
+
+        timer = setInterval(() => {
+            if (this.remainingTime > 0) {
+                this.remainingTime -= 1;
+                timeElement.innerText = `${this.remainingTime}`;
+            }
+            if (this.remainingTime === 0) {
+                // this.isPlaying = false;
+                this.task.live = 0;
+                this.endGame();
+            }
+        }, 1000);
+
     }
 }
