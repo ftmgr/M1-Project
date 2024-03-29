@@ -4,6 +4,7 @@ class Task {
         this.score = 0;
         this.live = 3;
         this.collectedItems = [];
+        this.isCompleted = false;
         this.generateItems();
     }
 
@@ -35,8 +36,8 @@ class Task {
                 if (item.type === 'party') {
                     this.score += 10;
                     this.collectedItems.push(item);
-                    if (this.collectedItems.length === this.items.length) {
-                        console.log('We collected all the items!');
+                    if (this.collectedItems.length === 3) {
+                        this.isCompleted = true;
                     }
 
                     // this.checkCompletion();
@@ -51,10 +52,10 @@ class Task {
         }
     }
 
-    checkCompletion() {
-
-        return this.items.every(object => collectedItems.includes(object));
-    }
+    /* checkCompletion() {
+ 
+     //    return this.items.every(object => collectedItems.includes(object));
+     } */
 
     reset(cat) {
         // Reset game state variables
